@@ -1,0 +1,228 @@
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateSendTextMessages (20130926235351)
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "send_text_messages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20130926235351')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("send_text_messages")[0m
+
+
+Processing SendTextMessagesController#index (for 127.0.0.1 at 2013-09-26 20:06:12) [GET]
+  [4;36;1mSendTextMessage Load (0.4ms)[0m   [0;1mSELECT * FROM "send_text_messages" [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/index
+Completed in 91ms (View: 87, DB: 0) | 200 OK [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#new (for 127.0.0.1 at 2013-09-26 20:06:16) [GET]
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/new
+Completed in 29ms (View: 26, DB: 0) | 200 OK [http://localhost/send_text_messages/new]
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:06:25) [POST]
+  Parameters: {"commit"=>"Send", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"yo, this is a message"}
+  [4;35;1mSendTextMessage Create (0.3ms)[0m   [0mINSERT INTO "send_text_messages" ("created_at", "updated_at") VALUES('2013-09-27 00:06:26', '2013-09-27 00:06:26')[0m
+Redirected to http://localhost:3000/send_text_messages/1
+Completed in 818ms (DB: 0) | 302 Found [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#show (for 127.0.0.1 at 2013-09-26 20:06:26) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mSendTextMessage Load (0.1ms)[0m   [0;1mSELECT * FROM "send_text_messages" WHERE ("send_text_messages"."id" = 1) [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/show
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/send_text_messages/1]
+
+
+Processing SendTextMessagesController#index (for 127.0.0.1 at 2013-09-26 20:08:59) [GET]
+  [4;35;1mSendTextMessage Load (0.3ms)[0m   [0mSELECT * FROM "send_text_messages" [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/index
+Completed in 7ms (View: 4, DB: 0) | 200 OK [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#new (for 127.0.0.1 at 2013-09-26 20:09:02) [GET]
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/new
+Completed in 10ms (View: 6, DB: 0) | 200 OK [http://localhost/send_text_messages/new]
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:09:17) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8046905896", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"yo #2"}
+
+Twilio::REST::RequestError (A 'To' phone number is required.):
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:226:in `connect_and_send'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:165:in `post'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/list_resource.rb:85:in `create'
+  app/controllers/send_text_messages_controller.rb:53:in `create'
+  app/controllers/send_text_messages_controller.rb:45:in `create'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.1ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:10:42) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8046905896", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"yo #2"}
+  [4;36;1mSendTextMessage Create (0.3ms)[0m   [0;1mINSERT INTO "send_text_messages" ("created_at", "updated_at") VALUES('2013-09-27 00:10:43', '2013-09-27 00:10:43')[0m
+Redirected to http://localhost:3000/send_text_messages/2
+Completed in 1092ms (DB: 0) | 302 Found [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#show (for 127.0.0.1 at 2013-09-26 20:10:43) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSendTextMessage Load (0.1ms)[0m   [0mSELECT * FROM "send_text_messages" WHERE ("send_text_messages"."id" = 2) [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/show
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/send_text_messages/2]
+
+
+Processing SendTextMessagesController#index (for 127.0.0.1 at 2013-09-26 20:10:50) [GET]
+  [4;36;1mSendTextMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "send_text_messages" [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/index
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#new (for 127.0.0.1 at 2013-09-26 20:10:51) [GET]
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/new
+Completed in 6ms (View: 3, DB: 0) | 200 OK [http://localhost/send_text_messages/new]
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:11:05) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8042405080", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"Hey Jana!"}
+
+Twilio::REST::RequestError (The number +18042405080 is unverified. Trial accounts cannot send messages to unverified numbers; verify +18042405080 at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.):
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:226:in `connect_and_send'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:165:in `post'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/list_resource.rb:85:in `create'
+  app/controllers/send_text_messages_controller.rb:53:in `create'
+  app/controllers/send_text_messages_controller.rb:45:in `create'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:14:13) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8042405080", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"Hey Jana!"}
+  [4;35;1mSendTextMessage Create (0.4ms)[0m   [0mINSERT INTO "send_text_messages" ("created_at", "updated_at") VALUES('2013-09-27 00:14:14', '2013-09-27 00:14:14')[0m
+Redirected to http://localhost:3000/send_text_messages/3
+Completed in 1025ms (DB: 0) | 302 Found [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#show (for 127.0.0.1 at 2013-09-26 20:14:14) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mSendTextMessage Load (0.1ms)[0m   [0;1mSELECT * FROM "send_text_messages" WHERE ("send_text_messages"."id" = 3) [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/show
+Completed in 5ms (View: 1, DB: 0) | 200 OK [http://localhost/send_text_messages/3]
+
+
+Processing SendTextMessagesController#index (for 127.0.0.1 at 2013-09-26 20:16:59) [GET]
+  [4;35;1mSendTextMessage Load (0.4ms)[0m   [0mSELECT * FROM "send_text_messages" [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/index
+Completed in 10ms (View: 7, DB: 0) | 200 OK [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#new (for 127.0.0.1 at 2013-09-26 20:17:01) [GET]
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/new
+Completed in 6ms (View: 3, DB: 0) | 200 OK [http://localhost/send_text_messages/new]
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:17:14) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8046905896", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"yo yo yo "}
+
+Twilio::REST::RequestError (The From phone number +18046905896 is not a valid, SMS-capable inbound phone number or short code for your account.):
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:226:in `connect_and_send'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/client.rb:165:in `post'
+  /Users/peterb/.rvm/gems/ruby-1.8.7-p357@ses_test/gems/twilio-ruby-3.11.1/lib/twilio-ruby/rest/list_resource.rb:85:in `create'
+  app/controllers/send_text_messages_controller.rb:53:in `create'
+  app/controllers/send_text_messages_controller.rb:45:in `create'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/peterb/.rvm/rubies/ruby-1.8.7-p357/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SendTextMessagesController#create (for 127.0.0.1 at 2013-09-26 20:18:14) [POST]
+  Parameters: {"commit"=>"Send", "sms_number"=>"8046905896", "authenticity_token"=>"HMkunU4+PLiRGIwk23PakskkI91QBUI7ml/LRtA8Y04=", "sms_text"=>"yo yo yo "}
+  [4;36;1mSendTextMessage Create (0.3ms)[0m   [0;1mINSERT INTO "send_text_messages" ("created_at", "updated_at") VALUES('2013-09-27 00:18:15', '2013-09-27 00:18:15')[0m
+Redirected to http://localhost:3000/send_text_messages/4
+Completed in 596ms (DB: 0) | 302 Found [http://localhost/send_text_messages]
+
+
+Processing SendTextMessagesController#show (for 127.0.0.1 at 2013-09-26 20:18:15) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mSendTextMessage Load (0.1ms)[0m   [0mSELECT * FROM "send_text_messages" WHERE ("send_text_messages"."id" = 4) [0m
+Rendering template within layouts/send_text_messages
+Rendering send_text_messages/show
+Completed in 5ms (View: 1, DB: 0) | 200 OK [http://localhost/send_text_messages/4]
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("send_text_messages")[0m

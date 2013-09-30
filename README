@@ -1,0 +1,23 @@
+== SMS Messaging POC
+
+== Background:
+This POC was commissioned to test the ability to integrate an SMS text messaging system with a Rails 2.3 application.
+
+Most of the services seem to be competitive in terms of pricing, so I based my choice of using [Twilio](www.twilio.com) was based primarily on the ease of integration.  Integration was done easily using a [twilio gem](https://github.com/twilio/twilio-ruby).
+
+== Implementation
+For this POC, I just created a simple controller and form using the "scaffold" generator.  The Twilio credentials are embedded right in the controller for brevity and simplicity only to complete this POC.  In a more production oriented environment, you'll want to put your Twilio (or whatever provider you end up going with) credentials in a configuration file.  See the project directory app/controllers/send_text_messages_controller.rb for more details.
+
+Sign-up for a Twilio account is easy but in test mode, you only have the ability to send a limited number of text messages and you can only send messages to verified numbers.  This is great, convenient and easily done in a development mode, but obviously you'd have to commit to a paid account for production use.  I did not do an exhaustive survey of providers for this POC.  "Short Code" messages via Twilio are $.01 per message which seemed completely reasonable to me.
+
+== Deployment and running:
+Clone and deploy this application locally just as you would any other Rails app.  If you'd like to use your own Twilio account, you'll have to sign up.  Once you do, you'll receive credentials that you'll have to plug into the send_text_messages_controller.rb.  Alternatively, you can set these up as a configuration item as mentioned above.  Don't forget to do a rake db:migrate (a record of each text sent is saved in the db) and launch the application.  Once it's running, go to http://localhost:3000/send_text_messages/new
+
+== Integration with ShutI:
+There are essentially two means of integrating this approach with ShutI.  The first should be to integrate it directly into the application as it is today, or alternatively use this as a beginning step to start pulling out key functionality and creating a more division of concerns within the application.  Because we've already discussed this as a development team and I believe based on those conversations that there is consensus around this, the best approach would be to use this texting feature as a first step in a more segregated architecture.  Estimates around this are:
+
+* Set up a stand-alone service with the responsibility of external communication (this could be considered anything, email, text, push to a smartphone, etc.).  **20-30 hours**
+* Set up channel preferences in a user preference table **3 hours**
+* Set up a delegation plug-in via email configuration in current ShutI implementation **20-30 hours**
+
+Peter Braswell (peter.braswell@gmail.com)
